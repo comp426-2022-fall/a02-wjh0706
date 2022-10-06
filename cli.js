@@ -18,8 +18,8 @@ if(args.h){
 }
 
 var timezone = moment.tz.guess();
-if(args.t){
-    timezone = args.t;
+if(args.z){
+    timezone = args.z;
 }
 var latitude;
 var longitude;
