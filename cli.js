@@ -13,6 +13,6 @@ if(args.h){
     -e, -w        Longitude: E positive; W negative.\n
     -z            Time zone: uses tz.guess() from moment-timezone by default.\n
     -d 0-6        Day to retrieve weather: 0 is today; defaults to 1.\n
-    -j            Echo pretty JSON from open-meteo API and exit.'\n);
+    -j            Echo pretty JSON from open-meteo API and exit.\n');
 	process.exit(0);
 }
