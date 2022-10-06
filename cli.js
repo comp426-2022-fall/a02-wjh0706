@@ -18,11 +18,34 @@ if(args.h){
 }
 
 const timezone = moment.tz.guest();
-const latitude =;
-const longitude = ;
+if(args.t){
+    timezone = args.t;
+}
+
+const latitude;
+const longitude;
+if(args.n!=null){
+	latitude = args.n;
+}else if (args.s!=null){
+	latitude = args.s;
+}else{
+	latitude = 0;
+}
+
+if(args.e!=null){
+	longitude = args.e;
+}else if (args.w!=null){
+	longitude = args.w;
+}else{
+	longitude = 0;
+}
+	
 
 const response = await nodefetch('https://api.open-meteo.com/v1/forecast?latitude=' + latitude + '&longitude=' + longitude + '&daily=weathercode,temperature_2m_max,temperature_2m_min,sunrise,sunset,precipitation_sum,precipitation_hours,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timezone=' + timezone);
 const data = await response.json();
+
+console.log(data);
+
 const days = args.d
 
 if (days == 0) {
