@@ -4,7 +4,9 @@ import minimist from "minimist";
 import nodefetch from "node-fetch";
 import moment from "moment-timezone";
 
-const args = minimist(process.argv.slice(2))
+const args = minimist(process.argv.slice(2));
+var latitude;
+var longitude;
 
 if(args.h){
   	console.log(`Usage: galosh.js [options] -[n|s] LATITUDE -[e|w] LONGITUDE -z TIME_ZONE
@@ -15,32 +17,38 @@ if(args.h){
     -d 0-6        Day to retrieve weather: 0 is today; defaults to 1.
     -j            Echo pretty JSON from open-meteo API and exit.`);
 	process.exit(0);
-}
+}else{
+	let latitude = '0';
+	if(args.n){
+		latitude = args.n;
+	}
+
+	if(args.s){
+		latitude = args.s;
+	}else{
+		console.log("error");
+	}
+
+	let longtitude = '0';
+	if(args.e){
+		longtitude = args.e;
+	}
+
+	if(args.w){
+    		longtitude = args.w;
+	}else{
+		console.log("error")
+	}
 
 var timezone = moment.tz.guess();
 if(args.z){
     timezone = args.z;
 }
-var latitude;
-var longitude;
-if(args.n!=null){
-  latitude = args.n;
-}else if (args.s!=null){
-  latitude = args.s*-1;
-}else{
-  latitude = 0;
-}
 
-if(args.e!=null){
-  longitude = args.e;
-}else if (args.w!=null){
-  longitude = args.w*-1;
-}else{
-  longitude = 0;
-}
+
 	
 
-const response = await node_fetch('https://api.open-meteo.com/v1/forecast?latitude=' + latitude + '&longitude=' + longtitude + '&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,precipitation_sum&timezone=' + timezone)
+const response = await node_fetch('https://api.open-meteo.com/v1/forecast?latitude=' + latitude + '&longitude=' + longtitude + '&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,precipitation_sum&timezone=' + timezone);
 
 const data = await response.json();
 
