@@ -5,8 +5,8 @@ import nodefetch from "node-fetch";
 import moment from "moment-timezone";
 
 const args = minimist(process.argv.slice(2));
-var latitude;
-var longitude;
+let latitude;
+let longitude;
 
 if(args.h){
   	console.log(`Usage: galosh.js [options] -[n|s] LATITUDE -[e|w] LONGITUDE -z TIME_ZONE
@@ -48,7 +48,7 @@ if(args.z){
 
 	
 
-const response = await node_fetch('https://api.open-meteo.com/v1/forecast?latitude=' + latitude + '&longitude=' + longtitude + '&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,precipitation_sum&timezone=' + timezone);
+let response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longtitude}&hourly=temperature_2m,precipitation&daily=precipitation_hours&temperature_unit=fahrenheit&timezone=auto`);
 
 const data = await response.json();
 
