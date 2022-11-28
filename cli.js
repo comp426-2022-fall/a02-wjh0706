@@ -48,7 +48,7 @@ if(args.z){
 
 	
 
-let response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longtitude}&hourly=temperature_2m,precipitation&daily=precipitation_hours&temperature_unit=fahrenheit&timezone=auto`);
+let response = await nodefetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longtitude}&hourly=temperature_2m,precipitation&daily=precipitation_hours&temperature_unit=fahrenheit&timezone=auto`);
 
 const data = await response.json();
 
