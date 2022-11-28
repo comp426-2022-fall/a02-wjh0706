@@ -26,7 +26,7 @@ if(args.h){
 	if(args.s){
 		latitude = args.s;
 	}else{
-		console.log("error");
+		console.log("Latitude must be in range");
 	}
 
 	let longtitude = '0';
@@ -37,7 +37,7 @@ if(args.h){
 	if(args.w){
     		longtitude = args.w;
 	}else{
-		console.log("error")
+		console.log("Longtitude must be in range")
 	}
 
 var timezone = moment.tz.guess();
